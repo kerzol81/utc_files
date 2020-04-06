@@ -58,12 +58,12 @@ class Qserver:
 
     def find_utc_files(self):
         if self.available:
-            utc_files = []
-            for folder in bats_folders:
+          
+            for folder in self.utc_folders:
                 stdin, stdout, stderr = ssh.exec_command("find /share/CACHEDEV1_DATA/" + folder.decode(
                     "utf-8") + "/ -type f -name *.UTC | awk -F '/' '{print $6}' | tail -1")
                 for file in stdout.read().splitlines():
-                    utc_files.append(file)
+                    self.utc_files.append(file)
 
 
 a = Qserver()
